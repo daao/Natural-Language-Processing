@@ -78,7 +78,7 @@ class LanguageModel:
             if self.unigram_count[third] > 0:
                 factor = self.unigram_count[third]/len(self.text)
                 return factor*alpha
-            else:
+            else: # Normally, never reached
                 return alpha
 
     def init_matrice(self):
@@ -95,7 +95,7 @@ class LanguageModel:
 
     def generate_random_string(self, length=300, export=False):
         # choose a random trigram (<s>, w) according to its probability
-        bigrams_starter = [bigram for bigram in self.trigrams_norm.keys()]
+        bigrams_starter = [bigram for bigram in self.trigrams_norm.keys() if bigram.startswith("_")]
         w = np.random.choice(bigrams_starter)
         text = w
 

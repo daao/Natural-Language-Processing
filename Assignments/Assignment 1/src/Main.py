@@ -14,12 +14,12 @@ file = open(test, "r", encoding="utf-8")
 perplexity = {}
 i = 0
 for line in file.readlines():
-    perplexity['line' + str(i)] = {}
+    perplexity[str(i)] = {}
     for lang_model in lang_models:
-        perplexity['line'+str(i)][lang_model.variety] = lang_model.compute_perplexity(line)
-        print("Perplexity of " + lang_model.variety + " = " + str(perplexity['line'+str(i)][lang_model.variety]))
+        perplexity[str(i)][lang_model.variety] = lang_model.compute_perplexity(line)
+        print("Perplexity of " + lang_model.variety + " = " + str(perplexity[str(i)][lang_model.variety]))
 
-    best = min(perplexity['line'+str(i)].keys(), key=(lambda k:perplexity['line' + str(i)][k]))
+    best = min(perplexity[str(i)].keys(), key=(lambda k:perplexity[str(i)][k]))
     print("Best language model is " + best)
     i += 1
 

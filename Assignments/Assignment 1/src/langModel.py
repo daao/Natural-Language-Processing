@@ -59,11 +59,12 @@ class LanguageModel:
     def compute_estimation(self):
         for first in self.alphabet:
             for second in self.alphabet:
-                for third in self.alphabet:
-                    if self.trigrams_norm[first+second][third] > 0:
-                        self.trigrams_norm[first+second][third] = self.trigrams_count[first+second][third]/self.bigram_count[first+second]
+                bigram = first + second
+                for letter in self.alphabet:
+                    if self.trigrams_norm[bigram][letter] > 0:
+                        self.trigrams_norm[bigram][letter] = self.trigrams_count[bigram][letter]/self.bigram_count[bigram]
                     else:
-                        self.trigrams_norm[first+second][third] = self.stupid_backoff(second, third)
+                        self.trigrams_norm[bigram][letter] = self.stupid_backoff(second, letter)
 
     def stupid_backoff(self, second, third, previous = 1, level = 2):
         alpha = 0.4 * previous
@@ -81,26 +82,30 @@ class LanguageModel:
                 return alpha
 
     def init_matrice(self):
-        for first in self.alphabet:
-            self.unigram_count[first] = 0
-            for second in self.alphabet:
-                self.trigrams_count[first + second] = {}
-                self.trigrams_norm[first + second] = {}
-                self.bigram_count[first + second] = 0
-                for third in self.alphabet:
-                    self.trigrams_count[first+second][third] = 0
-                    self.trigrams_norm[first + second][third] = 0
+        for i in self.alphabet:
+            self.unigram_count[i] = 0
+            for j in self.alphabet:
+                bigram = i+j
+                self.trigrams_count[bigram] = {}
+                self.trigrams_norm[bigram] = {}
+                self.bigram_count[bigram] = 0
+                for letter in self.alphabet:
+                    self.trigrams_count[bigram][letter] = 0
+                    self.trigrams_norm[bigram][letter] = 0
 
     def generate_random_string(self, length=300, export=False):
         # choose a random trigram (<s>, w) according to its probability
-        w = rand.choice([bigram for bigram in self.trigrams_norm.keys() if bigram.startswith("_")])
+        bigrams_starter = [bigram for bigram in self.trigrams_norm.keys()]
+        w = np.random.choice(bigrams_starter)
         text = w
 
         # Choose a random trigram (w,x) according to its probability
         for i in range(length):
-            x = rand.choice([key for key in self.trigrams_norm[w].keys()])
-            while rand.random() > self.trigrams_norm[w][x]:
-                x = rand.choice([key for key in self.trigrams_norm[w].keys()])
+            letters = [letter for letter in self.trigrams_norm[w].keys()]
+            while True:
+                x = np.random.choice(letters)
+                if rand.random() <= self.trigrams_norm[w][x]:
+                    break
             text += x
             w = text[-2:]
 

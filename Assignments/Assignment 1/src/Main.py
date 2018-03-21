@@ -7,7 +7,7 @@ lang_models = []
 
 for training in training_set:
     lm = LanguageModel(training)
-    lm.generate_random_string(300, True)
+    lm.generate_random_string(200, True)
     lang_models.append(lm)
 
 file = open(test, "r", encoding="utf-8")

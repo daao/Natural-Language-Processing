@@ -41,13 +41,11 @@ class LanguageModel:
         self.export_model()
 
     def clean_text(self, text):
-        text = text.replace(" ", "__")
-        text = re.sub("[^_a-zA-Z]", "", text)
-        text = text.lower()
-        return text
+        text = text.replace(" ", "__").lower()
+        return re.sub("[^_a-z]", "", text)
 
     def export_model(self):
-        file = "model_" + os.path.basename(self.training_file)
+        file = "models/model_" + os.path.basename(self.training_file)
         out = open(file, "w")
         for first in self.alphabet:
             for second in self.alphabet:
@@ -108,7 +106,7 @@ class LanguageModel:
 
         text = text.replace("__", " ").replace("_", "")
         if export:
-            file_name = "random_string_" + os.path.basename(self.training_file)
+            file_name = "random_outputs/random_string_" + os.path.basename(self.training_file)
             file = open(file_name, "w")
             file.write(text)
             file.close()

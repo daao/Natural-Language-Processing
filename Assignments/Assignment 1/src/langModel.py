@@ -1,7 +1,6 @@
 import re
 import random as rand
 import os
-import numpy as np
 from decimal import *
 
 class LanguageModel:
@@ -66,20 +65,14 @@ class LanguageModel:
                     else:
                         self.trigrams_norm[bigram][letter] = self.stupid_backoff(second, letter)
 
-    def stupid_backoff(self, second, third, previous = 1, level = 2):
-        alpha = 0.4 * previous
-        if level == 2:
-            if self.bigram_count[second+third] > 0:
-                factor = self.bigram_count[second+third]/self.unigram_count[second]
-                return factor*alpha
-            else:
-                return self.stupid_backoff(second, third, alpha, 1)
+    def stupid_backoff(self, second, letter):
+        alpha = 0.4
+        if self.bigram_count[second+letter] > 0:
+            factor = self.bigram_count[second+letter]/self.unigram_count[second]
+            return factor * alpha
         else:
-            if self.unigram_count[third] > 0:
-                factor = self.unigram_count[third]/len(self.text)
-                return factor*alpha
-            else: # Normally, never reached
-                return alpha
+            factor = self.unigram_count[letter] / len(self.text)
+            return factor * alpha * alpha
 
     def init_matrice(self):
         for i in self.alphabet:
@@ -93,28 +86,28 @@ class LanguageModel:
                     self.trigrams_count[bigram][letter] = 0
                     self.trigrams_norm[bigram][letter] = 0
 
-    def generate_random_string(self, length=300, export=False):
+    def generate_random_string(self, k):
         # choose a random trigram (<s>, w) according to its probability
         bigrams_starter = [bigram for bigram in self.trigrams_norm.keys() if bigram.startswith("_")]
-        w = np.random.choice(bigrams_starter)
+        w = rand.choice(bigrams_starter)
         text = w
 
         # Choose a random trigram (w,x) according to its probability
-        for i in range(length):
+        for i in range(k):
             letters = [letter for letter in self.trigrams_norm[w].keys()]
+            rand.uniform(0, max([self.trigrams_norm[w][letter] for letter in letters]))
             while True:
-                x = np.random.choice(letters)
-                if rand.random() <= self.trigrams_norm[w][x]:
+                x = rand.choice(letters)
+                if rand.random() < self.trigrams_norm[w][x]:
                     break
             text += x
             w = text[-2:]
 
         text = text.replace("__", " ").replace("_", "")
-        if export:
-            file_name = "random_outputs/random_string_" + os.path.basename(self.training_file)
-            file = open(file_name, "w")
-            file.write(text)
-            file.close()
+        file_name = "random_outputs/random_string_" + os.path.basename(self.training_file)
+        file = open(file_name, "w")
+        file.write(text)
+        file.close()
 
     def compute_perplexity(self, text):
         text_cleaned = self.clean_text(text)
@@ -122,8 +115,9 @@ class LanguageModel:
         start = 0
         offset = start+2
         while offset < len(text_cleaned):
-            probability = Decimal(probability) * Decimal((1/(self.trigrams_norm[text_cleaned[start:offset]][text_cleaned[offset]])))
+            bigram = text_cleaned[start:offset]
+            letter = text_cleaned[offset]
+            probability = Decimal(probability) * Decimal((1/(self.trigrams_norm[bigram][letter])))
             start += 1
             offset += 1
-
         return Decimal(probability) ** Decimal((1/len(text_cleaned)))

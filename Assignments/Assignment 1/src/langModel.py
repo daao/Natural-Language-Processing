@@ -56,9 +56,6 @@ class LanguageModel:
                 out.write(row)
         out.close()
 
-    def generate_lambda(self):
-        return np.random.dirichlet(np.ones(3), size=1)[0]
-
     def compute_estimation(self):
         for first in self.alphabet:
             for second in self.alphabet:

@@ -1,6 +1,7 @@
 import re
 import random as rand
 import os
+import numpy as np
 from decimal import *
 
 class LanguageModel:
@@ -55,12 +56,15 @@ class LanguageModel:
                 out.write(row)
         out.close()
 
+    def generate_lambda(self):
+        return np.random.dirichlet(np.ones(3), size=1)[0]
+
     def compute_estimation(self):
         for first in self.alphabet:
             for second in self.alphabet:
                 bigram = first + second
                 for letter in self.alphabet:
-                    if self.trigrams_norm[bigram][letter] > 0:
+                    if self.trigrams_count[bigram][letter] > 0:
                         self.trigrams_norm[bigram][letter] = self.trigrams_count[bigram][letter]/self.bigram_count[bigram]
                     else:
                         self.trigrams_norm[bigram][letter] = self.stupid_backoff(second, letter)

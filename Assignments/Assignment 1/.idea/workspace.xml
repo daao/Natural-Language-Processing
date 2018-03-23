@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cfcc58a4-cae6-47c8-ad7d-15bb4394a2b9" name="Default" comment="- optimization code">
+    <list default="true" id="cfcc58a4-cae6-47c8-ad7d-15bb4394a2b9" name="Default" comment="- correction in computation estimation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/langModel.py" afterPath="$PROJECT_DIR$/src/langModel.py" />
-      <change beforePath="$PROJECT_DIR$/src/models/model_training.AU" afterPath="$PROJECT_DIR$/src/models/model_training.AU" />
-      <change beforePath="$PROJECT_DIR$/src/models/model_training.GB" afterPath="$PROJECT_DIR$/src/models/model_training.GB" />
-      <change beforePath="$PROJECT_DIR$/src/models/model_training.US" afterPath="$PROJECT_DIR$/src/models/model_training.US" />
-      <change beforePath="$PROJECT_DIR$/src/random_outputs/random_string_training.AU" afterPath="$PROJECT_DIR$/src/random_outputs/random_string_training.AU" />
-      <change beforePath="$PROJECT_DIR$/src/random_outputs/random_string_training.GB" afterPath="$PROJECT_DIR$/src/random_outputs/random_string_training.GB" />
-      <change beforePath="$PROJECT_DIR$/src/random_outputs/random_string_training.US" afterPath="$PROJECT_DIR$/src/random_outputs/random_string_training.US" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -249,11 +242,19 @@
       <option name="project" value="LOCAL" />
       <updated>1521765864914</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="- correction in computation estimation">
+      <created>1521803810757</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1521803810757</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15729167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -281,7 +282,8 @@
     <MESSAGE value="- generation random output (200 char)" />
     <MESSAGE value="- modification/correction generation random&#10;- upgrade print result perplexity" />
     <MESSAGE value="- optimization code" />
-    <option name="LAST_COMMIT_MESSAGE" value="- optimization code" />
+    <MESSAGE value="- correction in computation estimation" />
+    <option name="LAST_COMMIT_MESSAGE" value="- correction in computation estimation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -421,6 +423,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

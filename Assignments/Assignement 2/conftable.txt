@@ -1,0 +1,64 @@
+<sentence file="assignment2" id="0" text="I gave an apple to the teacher ">
+Step	Stack	Buffer	Action	Relation Added
+0	[ROOT, I]	[gave, an, apple, to, the, teacher]	SHIFT
+1	[ROOT, I, gave]	[an, apple, to, the, teacher]	SHIFT
+2	[ROOT, gave]	[an, apple, to, the, teacher]	LEFTARC	I<-gave
+3	[ROOT, gave, an]	[apple, to, the, teacher]	SHIFT
+4	[ROOT, gave, an, apple]	[to, the, teacher]	SHIFT
+5	[ROOT, gave, apple]	[to, the, teacher]	LEFTARC	an<-apple
+6	[ROOT, gave]	[to, the, teacher]	RIGHTARC	gave->apple
+7	[ROOT, gave, to]	[the, teacher]	SHIFT
+8	[ROOT, gave, to, the]	[teacher]	SHIFT
+9	[ROOT, gave, to, the, teacher]	[]	SHIFT
+10	[ROOT, gave, to, teacher]	[]	LEFTARC	the<-teacher
+11	[ROOT, gave, teacher]	[]	LEFTARC	to<-teacher
+12	[ROOT, gave]	[]	RIGHTARC	gave->teacher
+13	[ROOT]	[]	RIGHTARC	ROOT->gave
+<sentence>
+
+<sentence file="assignment2" id="1" text="Mary missed her train to work ">
+Step	Stack	Buffer	Action	Relation Added
+0	[ROOT, Mary]	[missed, her, train, to, work]	SHIFT
+1	[ROOT, Mary, missed]	[her, train, to, work]	SHIFT
+2	[ROOT, missed]	[her, train, to, work]	LEFTARC	Mary<-missed
+3	[ROOT, missed, her]	[train, to, work]	SHIFT
+4	[ROOT, missed, her, train]	[to, work]	SHIFT
+5	[ROOT, missed, train]	[to, work]	LEFTARC	her<-train
+6	[ROOT, missed]	[to, work]	RIGHTARC	missed->train
+7	[ROOT, missed, to]	[work]	SHIFT
+8	[ROOT, missed, to, work]	[]	SHIFT
+9	[ROOT, missed, work]	[]	LEFTARC	to<-work
+10	[ROOT, missed]	[]	RIGHTARC	missed->work
+11	[ROOT]	[]	RIGHTARC	ROOT->missed
+<sentence>
+
+<sentence file="assignment2" id="2" text="John gave the teacher a very heavy book ">
+Step	Stack	Buffer	Action	Relation Added
+0	[ROOT, John]	[gave, the, teacher, a, very, heavy, book]	SHIFT
+1	[ROOT, John, gave]	[the, teacher, a, very, heavy, book]	SHIFT
+2	[ROOT, gave]	[the, teacher, a, very, heavy, book]	LEFTARC	John<-gave
+3	[ROOT, gave, the]	[teacher, a, very, heavy, book]	SHIFT
+4	[ROOT, gave, the, teacher]	[a, very, heavy, book]	SHIFT
+5	[ROOT, gave, teacher]	[a, very, heavy, book]	LEFTARC	the<-teacher
+6	[ROOT, gave]	[a, very, heavy, book]	RIGHTARC	gave->teacher
+7	[ROOT, gave, a]	[very, heavy, book]	SHIFT
+8	[ROOT, gave, a, very]	[heavy, book]	SHIFT
+9	[ROOT, gave, a, very, heavy]	[book]	SHIFT
+10	[ROOT, gave, a, heavy]	[book]	LEFTARC	very<-heavy
+11	[ROOT, gave, a, heavy, book]	[]	SHIFT
+12	[ROOT, gave, a, book]	[]	LEFTARC	heavy<-book
+13	[ROOT, gave, book]	[]	LEFTARC	a<-book
+14	[ROOT, gave]	[]	RIGHTARC	gave->book
+15	[ROOT]	[]	RIGHTARC	ROOT->gave
+<sentence>
+
+<sentence file="assignment2" id="3" text="The sun shines ">
+Step	Stack	Buffer	Action	Relation Added
+0	[ROOT, The]	[sun, shines]	SHIFT
+1	[ROOT, The, sun]	[shines]	SHIFT
+2	[ROOT, sun]	[shines]	LEFTARC	The<-sun
+3	[ROOT, sun, shines]	[]	SHIFT
+4	[ROOT, shines]	[]	LEFTARC	sun<-shines
+5	[ROOT]	[]	RIGHTARC	ROOT->shines
+<sentence>
+

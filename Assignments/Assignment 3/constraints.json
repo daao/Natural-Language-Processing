@@ -17,7 +17,7 @@
   "last" : {
     "arguments" : 1,
     "constraint" : "x1  == (self.size-1)",
-    "comment": " x1 needs to be the last word of the sentence"
+    "comment": " x1 needs to be the last word of the sentence. 'self.size' represents the number of words"
   },
   "follows" : {
     "arguments" : 2,

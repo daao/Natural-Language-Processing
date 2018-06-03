@@ -1,0 +1,8 @@
+(string, the-1, "The")
+(string, car-1, "car")
+(string, is-1, "is")
+(string, a-1, "a")
+(string, nice-1, "nice")
+(string, supercar-1, "supercar")
+(follows, supercar-1, car-1)
+(precedes, car-1, is-1)

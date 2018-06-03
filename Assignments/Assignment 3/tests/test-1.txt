@@ -1,0 +1,8 @@
+(string, the-1, "the")
+(string, nice-1, "nice")
+(string, large-1, "large")
+(string, house-1, "house")
+(string, burns-1, "burns")
+(precedes, the-1, house-1)
+(meets, house-1, burns-1)
+(first, the-1)

@@ -1,0 +1,27 @@
+{
+ "meets" : {
+    "arguments" : 2,
+    "constraint" : "x1 < x2",
+    "comment": " x1 needs to be before x2"
+  },
+  "precedes" : {
+    "arguments" : 2,
+    "constraint" : "x1 == (x2-1)",
+    "comment": " x1 needs to be behind x2"
+  },
+  "first" : {
+    "arguments" : 1,
+    "constraint" : "x1 == 0",
+    "comment": " x1 needs to be the first word of the sentence"
+  },
+  "last" : {
+    "arguments" : 1,
+    "constraint" : "x1  == (self.size-1)",
+    "comment": " x1 needs to be the last word of the sentence"
+  },
+  "follows" : {
+    "arguments" : 2,
+    "constraint" : "x1 > x2",
+    "comment": " x1 needs to be after x2"
+  }
+}

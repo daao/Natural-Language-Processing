@@ -3,10 +3,10 @@ https://github.com/python-constraint/python-constraint
 
 ---- FILES
 main.py : executable script
-solver.py : class that create a problem, add constraints and variable and solve the problem
+solver.py : class that create a problem, add constraints and variables and solve the problem
 n_grams.py : read the file w2_.txt, construct the bi-gram matrix, normalize and compute the perplexity of a
 sentence
-constraints.json : contains semantic representations with the constraints, definition and the number of argument
+constraints.json : contains semantic representations with the constraints, definitions and the number of arguments 
 
 --- USAGE
 main.py --i <input_file>

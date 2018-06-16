@@ -26,7 +26,8 @@ Here is the syntax if you want to add some constraints :
 <pre><code>
 "key of constraint (for example for string, it is 'string', etc... ") : {
 	"arguments" : [integer] Number of arguments used for the constraint.
-	"constraints" : [String] Represents an array of mathematical formulation of your constraints with the respective variables (x1, x2, ..., xn) where n is the number of arguments for example, ['x1 < x2', 'x2 < x3'] for a constraint with 3 variables. The maximum of variables for each element of the array is 2. Look in the json for the between and chain the construction of an array of constraint
+	"constraints" : [String] Represents an array of mathematical formulation of your constraints with the respective variables (x1, x2, ..., xn) where n is the number of arguments.
+			for example, ['x1 < x2', 'x2 < x3'] for a constraint with 3 variables. The maximum of variables for each element of the array is 2.
 	"indices" (optional if you have 1 argument) : [String] Corresponds of an 2-D array in which each subarray contains the indices of variables used in each constraint defined in "constraints" section. For example,  if you're constraint is "['x1 < x2', 'x2 < x3']", you will have in indices : "[[1,2], [2,3]]".
 	"comment" (optional) : [String] comment of the constraints. Express what the constraint represent in a formal formulation.
 }

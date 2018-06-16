@@ -6,3 +6,4 @@
 (string, supercar-1, "supercar")
 (follows, supercar-1, car-1)
 (precedes, car-1, is-1)
+(next, car-1, the-1)

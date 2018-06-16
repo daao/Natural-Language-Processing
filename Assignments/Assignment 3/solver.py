@@ -43,21 +43,38 @@ class Solver:
     # Build the constraint
     def add_constraint(self, key, list):
         constr = self.json_data[key] # Get the structure of the constraint
-        constr_expr = eval("lambda x1, x2: " + constr["constraint"]) # Build the lambda
+        constraints = eval(constr["constraints"])
 
-        # Loop on all of stored semantic representation
-        for c in list:
+        # Loop on all of stored semantic variables
+        for i in range(len(list)):
+            c_variables = list[i]
+
             # If the constraint need only 1 variable
             if int(constr["arguments"]) == 1:
-                var = (c[0], c[0])
-            # If the constraint need 2 variables
+                var = (c_variables[0], c_variables[0])
+                lambda_constraint = eval("lambda x1, x2: " + constraints[0])
+                self.problem.addConstraint(lambda_constraint, var)
+
+            # If the constraint need 2 or more variables
             else:
-                var = (c[0], c[1])
-            self.problem.addConstraint(constr_expr, var)
+                # Loop on the constraints defined in the section "constraints" from the json
+                for j in range(len(constraints)):
+                    # Get the indices used for the constraint
+                    idx = eval(constr["indices"])[j]
+
+                    # Get the corresponding variables
+                    v1 = c_variables[idx[0]-1]
+                    v2 = c_variables[idx[1]-1]
+
+                    # Build the lambda expression
+                    lambda_constraint = eval("lambda x" + str(idx[0]) + ", x" + str(idx[1]) + ": " + constraints[j])
+                    var = (v1, v2)
+                    self.problem.addConstraint(lambda_constraint, var)
+
 
     # Solve the problem
     # Transform each solutions into a sentence
-    # If there is multiple solutioon, compute the perxplexity for each sentences/solutions
+    # If there is multiple solution, compute the perxplexity for each sentences/solutions
     # Print the best solution with the lowest perplexity
     def solve(self):
         solutions = self.problem.getSolutions()

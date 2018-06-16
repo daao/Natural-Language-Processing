@@ -1,27 +1,48 @@
 {
  "meets" : {
     "arguments" : 2,
-    "constraint" : "x1 < x2",
-    "comment": " x1 needs to be before x2"
+    "constraints" : "['x1 == (x2-1)']",
+    "indices" : "[[1, 2]]",
+    "comment": " x1 needs to be behind x2"
   },
   "precedes" : {
     "arguments" : 2,
-    "constraint" : "x1 == (x2-1)",
-    "comment": " x1 needs to be behind x2"
+    "constraints" : "['x1 < x2']",
+    "indices" : "[[1, 2]]",
+    "comment": " x1 needs to be before x2"
   },
   "first" : {
     "arguments" : 1,
-    "constraint" : "x1 == 0",
+    "constraints" : "['x1 == 0']",
     "comment": " x1 needs to be the first word of the sentence"
   },
   "last" : {
     "arguments" : 1,
-    "constraint" : "x1  == (self.size-1)",
+    "constraints" : "['x1  == (self.size-1)']",
     "comment": " x1 needs to be the last word of the sentence. 'self.size' represents the number of words"
   },
   "follows" : {
     "arguments" : 2,
-    "constraint" : "x1 > x2",
+    "constraints" : "['x1 > x2']",
+    "indices" : "[[1, 2]]",
     "comment": " x1 needs to be after x2"
+  },
+   "next" : {
+     "arguments" : 2,
+     "constraints" : "['x1 == (x2+1)']",
+     "indices": "[[1,2]]",
+     "comment": "x1 needs to be directly after (right relation) x2"
+   },
+  "between" : {
+    "arguments" : 3,
+    "constraints" : "['x1 < x2', 'x2 < x3']",
+    "indices" : "[[1, 2], [2, 3]]",
+    "comment" : "x2 needs to be between x1 and x3"
+  },
+  "chain" : {
+    "arguments" : 4,
+    "constraints" : "['x1 < x2' , 'x2 < x3', 'x3 < x4']",
+    "indices" : "[[1, 2], [2,3], [3,4]]",
+    "comment" : "Define a chain of words, the words respect the precedence relation."
   }
 }
